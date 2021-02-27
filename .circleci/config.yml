@@ -32,7 +32,7 @@ jobs:
             name: Build Docker image
             command: make push
       
-  build_and_push_tag:
+  build_and_push_tagged:
     environment:
       IMAGE_TAG: $CIRCLE_TAG
     docker:
@@ -55,19 +55,19 @@ workflows:
       - build_and_push_dev:
           filters:
             branches:
-                ignore:
-                  - main
-                  - master
+              ignore:
+                - main
+                - master
       
       - build_and_push_latest:
           filters:
             branches:
-                only:
-                  - main
-                  - master
+              only:
+                - main
+                - master
       
       - build_and_push_tagged:
           filters:
             tags:
-                only:
-                  - /.*/
+              only:
+                - /.+/
