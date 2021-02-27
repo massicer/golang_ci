@@ -68,6 +68,8 @@ workflows:
       
       - build_and_push_tagged:
           filters:
+            # ignore any commit on any branch by default since filter are in or
+            branches:
+              ignore: /.*/
             tags:
-              only:
-                - /.+/
+              only: /.*/
