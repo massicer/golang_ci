@@ -6,8 +6,8 @@ ENV GO111MODULE=on
 
 COPY --from=lint-base /usr/bin/golangci-lint /usr/bin/golangci-lint
 
-RUN golangci-lint --version
-
-RUN apk add git && apk add --no-cache bash
+RUN apk add --no-cache git &&\
+    apk add --no-cache bash &&\
+    apk add docker
 
 ENTRYPOINT ["/bin/bash"]
