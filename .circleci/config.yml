@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build_and_push:
+    environment:
+      IMAGE_TAG: dev
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: login docker hub
+          command: |
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+      - run:
+          name: Build Docker image
+          command: make push
+workflows:
+  version: 2
+  build-master:
+    jobs:
+      - build_and_push_dev:
+          filters:
+            branches:
+              only: ^master$
