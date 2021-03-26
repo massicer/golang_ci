@@ -13,5 +13,6 @@ RUN apk add --no-cache git &&\
     apk add build-base
 
 RUN go get golang.org/x/tools/gopls@${GOPLVERSION}
+RUN go get -v github.com/go-delve/delve/cmd/dlv
 
 ENTRYPOINT ["/bin/bash"]
