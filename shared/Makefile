@@ -12,5 +12,9 @@ test-coverage:
 test:
 	go test ./... -test.v
 
+.PHONY: build
+build:
+	go build ./...
+
 .PHONY: all
-all: lint test-coverage
+all: lint test-coverage build
