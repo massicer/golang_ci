@@ -6,6 +6,7 @@ ENV GO111MODULE=on
 ARG GOPLVERSION=v0.6.9
 
 COPY --from=lint-base /usr/bin/golangci-lint /usr/bin/golangci-lint
+COPY ./shared ./shared
 
 RUN apk add --no-cache git &&\
     apk add --no-cache bash &&\
